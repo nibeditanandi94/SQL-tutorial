@@ -104,3 +104,29 @@ SELECT * FROM branch;
 SELECT * FROM client;
 SELECT * FROM works_with;
 SELECT * FROM branch_supplier;
+
+--more basic queries (AS, DISTINCT)
+SELECT newemployee.emp_id AS employeeID, newemployee.first_name AS Forname FROM newemployee;
+SELECT DISTINCT newemployee.sex FROM newemployee;
+
+--functions
+-- find the number of employees
+SELECT COUNT(emp_id) FROM newemployee;
+
+--find the number of supervisors
+SELECT COUNT(super_id) FROM newemployee;
+
+-- find the number of male employees born after 1970
+SELECT COUNT(newemployee.emp_id) FROM newemployee WHERE sex='M' AND newemployee.birth_date > '1970-01-01';
+
+--find the average of all employee's salaries
+SELECT AVG(newemployee.salary) FROM newemployee;
+
+--find the sum of all employee's salaries
+SELECT SUM(newemployee.salary) FROM newemployee;
+
+--find out how many males and females are there
+SELECT COUNT(newemployee.sex), newemployee.sex FROM newemployee GROUP BY newemployee.sex;
+
+--find the total sales of each salesman
+SELECT SUM(works_with.total_sales), works_with.emp_id FROM works_with GROUP BY works_with.emp_id;
