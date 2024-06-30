@@ -130,3 +130,15 @@ SELECT COUNT(newemployee.sex), newemployee.sex FROM newemployee GROUP BY newempl
 
 --find the total sales of each salesman
 SELECT SUM(works_with.total_sales), works_with.emp_id FROM works_with GROUP BY works_with.emp_id;
+
+--wildcards -- % = any characters, _ = one character
+-- find any supply_type fron the branc_supplier where we have 'utensils' word
+SELECT * FROM branch_supplier WHERE supply_type LIKE '%UTENSILS';
+
+--find any employee born in February (4 times underscore to match the birth year 1980-02-05)
+SELECT * FROM newemployee WHERE DATE_FORMAT(newemployee.birth_date, '%m')='02';
+-- diff command to achieve the same like above
+SELECT * FROM newemployee WHERE newemployee.birth_date LIKE '____-02%';
+
+--find any clients who are schools
+SELECT * FROM client WHERE client.client_name LIKE '%School%';
