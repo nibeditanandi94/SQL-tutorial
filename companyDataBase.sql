@@ -143,6 +143,7 @@ SELECT * FROM newemployee WHERE newemployee.birth_date LIKE '____-02%';
 --find any clients who are schools
 SELECT * FROM client WHERE client.client_name LIKE '%School%';
 
+
 -- Union - Find a list of all clients & branch suppliers names
 SELECT client.client_name AS test
 FROM client
@@ -154,3 +155,24 @@ FROM branch_supplier;
 SELECT newemployee.salary AS companyTotalEarning FROM newemployee
 UNION
 SELECT works_with.total_sales FROM works_with;
+
+-- JOIN - It joins rows of two or more tables based on a related column - inner join i.e. JOIN
+SELECT newemployee.emp_id, newemployee.first_name, newemployee.branch_id
+FROM newemployee
+JOIN branch
+ON newemployee.emp_id = branch.mgr_id;
+
+-- JOIN - left join - it combines all the rows of the first table(newemployee where the clause is met)
+SELECT newemployee.branch_id, newemployee.first_name
+FROM newemployee
+LEFT JOIN branch
+ON newemployee.emp_id = branch.mgr_id;
+
+
+-- JOIN - right join - it combines all the rows of the second table(branch where the clause is met)
+SELECT newemployee.branch_id, newemployee.first_name
+FROM newemployee
+RIGHT JOIN branch
+ON newemployee.emp_id = branch.mgr_id;
+
+-- JOIN - full outer join which combines both right and left join together - implementation don't know yet to learn
