@@ -142,3 +142,15 @@ SELECT * FROM newemployee WHERE newemployee.birth_date LIKE '____-02%';
 
 --find any clients who are schools
 SELECT * FROM client WHERE client.client_name LIKE '%School%';
+
+-- Union - Find a list of all clients & branch suppliers names
+SELECT client.client_name AS test
+FROM client
+UNION
+SELECT branch_supplier.supplier_name
+FROM branch_supplier;
+
+--Find a list of all money spent or earned by the company
+SELECT newemployee.salary AS companyTotalEarning FROM newemployee
+UNION
+SELECT works_with.total_sales FROM works_with;
